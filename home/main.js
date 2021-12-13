@@ -28,3 +28,22 @@ fetch('https://jsonplaceholder.typicode.com/posts')
 //     Для кожного елементу свій блок div.comment
 // Всі характеристики повинні мати свої блоки всередені div.comment
 // https://jsonplaceholder.typicode.com/comments
+
+fetch('https://jsonplaceholder.typicode.com/comments')
+    .then(commentsElement => commentsElement.json())
+    .then(commentsElement => {
+        let div = document.createElement('div')
+        div.classList.add('container')
+        for (const element of commentsElement) {
+            let divcomments = document.createElement('div')
+            divcomments.classList.add('comment')
+            divcomments.innerHTML =`
+                <h3> Id: ${element.id} </h3>
+                    <h4>Name: ${element.name}</h4>
+                        <h5>Email: ${element.email} </h5>
+                            <h6>Body: ${element.body}</h6>`;
+            div.append(divcomments)
+            document.body.append(div)
+
+        }
+    })
