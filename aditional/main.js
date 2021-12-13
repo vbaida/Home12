@@ -37,6 +37,7 @@ fetch('https://jsonplaceholder.typicode.com/users')
                 fetch('https://jsonplaceholder.typicode.com/users/' + element.id + '/posts')
                     .then(response => response.json())
                     .then(posts => {
+                        let divposthead = document.createElement('div')
                         for (const post of posts) {
                             if (element.id === post.userId) {
                                 let divpost = document.createElement('div');
@@ -65,15 +66,24 @@ fetch('https://jsonplaceholder.typicode.com/users')
                                         <h4>Name: ${comment.name}</h4>
                                         <h5>Email: ${comment.email}</h5>
                                         <h6>Body: ${comment.body}</h6>
-                                        `;
-                                                    divpost.append(divCardComments)
-                                                    divpost.append(btn1)
+                                        `
+
+                                                    divposthead.append(divCardComments)
                                                 }
-                                                btn1.disabled = true;
+                                                button.disabled = true;
+
                                             }
+
+
                                         })
-                                }
-                                divuser.append(divpost)
+
+                            }
+
+
+
+                                divposthead.append(divpost)
+                                divpost.append(btn1)
+                                divuser.append(divposthead)
                             }
                             button.disabled = true;
                         }
